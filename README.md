@@ -21,6 +21,11 @@ Check out the live demo of the Rick and Morty Character Explorer [here](https://
 - Implements infinite scrolling using React Query and Intersection Observer.
 - Load more character data as you scroll down, providing a seamless browsing experience.
 
+### Search Functionality with Debounce
+
+- Implements a search feature that allows users to search for characters.
+- Utilizes the debounce technique to delay the search API requests until the user finishes typing, reducing unnecessary server calls and improving performance.
+
 ## Installation
 
 ```shell
