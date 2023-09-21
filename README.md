@@ -1,27 +1,30 @@
-# React + TypeScript + Vite
+# Rick and Morty Character Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-Currently, two official plugins are available:
+Welcome to the Rick and Morty Character Explorer! This React-based frontend project allows you to browse and explore character data from the popular TV show "Rick and Morty" using the [Rick and Morty API](https://rickandmortyapi.com/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Live Demo](#live-demo)
+- [Features](#features)
+- [Installation](#installation)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Live Demo
 
-- Configure the top-level `parserOptions` property like this:
+Check out the live demo of the Rick and Morty Character Explorer [here](<[#](https://lovecamilletw.github.io/rick-and-morty/)>).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## Features
+
+### Infinite Scrolling
+
+- Implements infinite scrolling using React Query and Intersection Observer.
+- Load more character data as you scroll down, providing a seamless browsing experience.
+
+## Installation
+
+```shell
+git clone https://github.com/loveCamilleTW/rick-and-morty.git
+cd rick-and-morty
+npm install && npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
