@@ -12,7 +12,7 @@ Welcome to the Rick and Morty Character Explorer! This React-based frontend proj
 
 ## Live Demo
 
-Check out the live demo of the Rick and Morty Character Explorer [here](<[#](https://lovecamilletw.github.io/rick-and-morty/)>).
+Check out the live demo of the Rick and Morty Character Explorer [here](https://lovecamilletw.github.io/rick-and-morty/).
 
 ## Features
 
