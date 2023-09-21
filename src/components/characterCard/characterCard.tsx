@@ -1,10 +1,10 @@
 import { Fragment, useState, MouseEvent } from "react";
-import { Character } from "../../types";
+import type { InfiniteData } from "react-query";
+import { CharacterRes, Character } from "../../types";
 import "./characterCard.css";
 
 interface CharacterCardListProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  characterPages: any;
+  characterPages: InfiniteData<CharacterRes>;
 }
 
 export function CharacterCardList(props: CharacterCardListProps) {
@@ -12,16 +12,13 @@ export function CharacterCardList(props: CharacterCardListProps) {
 
   return (
     <div className="characters">
-      {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        characterPages.pages.map((page: any) => (
-          <Fragment key={page.data.info.next}>
-            {page.data.results.map((character: Character) => (
-              <CharacterCard key={character.id} character={character} />
-            ))}
-          </Fragment>
-        ))
-      }
+      {characterPages.pages.map((page) => (
+        <Fragment key={page.info.next}>
+          {page.results.map((character) => (
+            <CharacterCard key={character.id} character={character} />
+          ))}
+        </Fragment>
+      ))}
     </div>
   );
 }
