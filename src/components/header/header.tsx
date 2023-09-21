@@ -8,7 +8,7 @@ export function Header() {
     <header id="header-bar">
       <nav id="header-top">
         <a id="github-logo" href={GITHUB_URL}>
-          <img src={githubLogo} />
+          <img src={githubLogo} alt="github logo" />
         </a>
       </nav>
       <div id="search-wrapper">

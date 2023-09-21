@@ -47,7 +47,7 @@ export function CharacterCard(props: CharacterCardProps) {
       >
         <div className="character-card-front">
           <div className="character-card-image-container">
-            <img src={character.image} />
+            <img src={character.image} alt={character.name} />
           </div>
           <div className="character-info">
             <h2 className="character-name">{character.name}</h2>
