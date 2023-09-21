@@ -28,12 +28,15 @@ function App() {
   if (!characterPages) return null;
 
   return (
-    <div>
-      <CharacterCardList characterPages={characterPages} />
+    <main id="main-section">
+      <header>header</header>
+      <article id="character-list">
+        <CharacterCardList characterPages={characterPages} />
+      </article>
       <div className="sentinal" ref={sentinalRef}>
         Hi
       </div>
-    </div>
+    </main>
   );
 }
 
