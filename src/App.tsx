@@ -1,7 +1,7 @@
 import { useEffect, useRef, Fragment } from "react";
-import { useCharacters } from "./Hooks/fetchHooks";
+import { useCharacters } from "./hooks/fetchHooks";
 import { CharacterCard } from "./components";
-import type { Character } from "./components";
+import type { Character } from "./types";
 
 function App() {
   const { fetchNextPage, data: characterPages } = useCharacters();
