@@ -1,0 +1,12 @@
+.character-card {
+  display: flex;
+}
+
+.character-card-front {
+  display: flex;
+}
+
+.character-info {
+  display: flex;
+  flex-direction: column;
+}
