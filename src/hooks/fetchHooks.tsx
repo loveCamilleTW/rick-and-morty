@@ -19,10 +19,12 @@ export function useCharacters(name: string) {
 
   return useInfiniteQuery(["characters", name], queryFn, {
     getNextPageParam: (lastPage) => {
+      if (!lastPage.info.next) return;
+
       const nextPageURL = new URL(lastPage.info.next);
       const nextPage = nextPageURL.searchParams.get("page");
       return nextPage;
     },
-    useErrorBoundary: true,
+    useErrorBoundary: false,
   });
 }

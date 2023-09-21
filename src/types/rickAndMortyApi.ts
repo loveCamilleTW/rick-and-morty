@@ -53,7 +53,7 @@ export const episodeSchema = z.object({
 
 export const infoSchema = z.object({
   count: z.number(),
-  next: z.string(),
+  next: z.nullable(z.string()),
   pages: z.number(),
   prev: z.nullable(z.string()),
 });

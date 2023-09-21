@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
-import { useCharacters } from "./hooks/fetchHooks";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
+import { useCharacters, useDebounce } from "./hooks";
 import { Header, CharacterCardList } from "./components";
 import "./App.css";
 
 function App() {
-  const { fetchNextPage, data: characterPages } = useCharacters();
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query);
+  const { fetchNextPage, data: characterPages } = useCharacters(debouncedQuery);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
 
@@ -25,14 +27,21 @@ function App() {
     }
   });
 
-  if (!characterPages) return null;
+  const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <main id="main-section">
-      <Header />
+      <Header query={query} onChange={handleQueryChange} />
       <article id="character-list">
-        <CharacterCardList characterPages={characterPages} />
+        {!characterPages ? (
+          <h2>not found...</h2>
+        ) : (
+          <CharacterCardList characterPages={characterPages} />
+        )}
       </article>
+
       <div className="sentinal" ref={sentinalRef}>
         Hi
       </div>
