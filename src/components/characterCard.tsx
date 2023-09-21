@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, MouseEvent } from "react";
 import { Character } from "../types";
 import "./characterCard.css";
 
@@ -46,18 +46,46 @@ export function CharacterCard(props: CharacterCardProps) {
         }`}
       >
         <div className="character-card-front">
-          <img src={character.image} />
+          <div className="character-card-image-container">
+            <img src={character.image} />
+          </div>
           <div className="character-info">
             <h3 className="character-name">{character.name}</h3>
+            <div>species: {character.species}</div>
             <div>{character.status}</div>
-            <div>{character.type}</div>
+            <div>type: {character.type}</div>
             <div>{character.gender}</div>
           </div>
         </div>
         <div className="character-card-back">
-          <div>{character.episode}</div>
+          <h3>Episodes</h3>
+          <div>
+            {character.episode.map((episodeUrl) => (
+              <EpisodeLink key={episodeUrl} episodeUrl={episodeUrl} />
+            ))}
+          </div>
         </div>
       </div>
     </article>
+  );
+}
+
+interface EpisodeLinkProps {
+  episodeUrl: string;
+}
+
+function EpisodeLink(props: EpisodeLinkProps) {
+  const { episodeUrl } = props;
+  const afterSplit = episodeUrl.split("/");
+  const eipsodeNumber = afterSplit[afterSplit.length - 1];
+
+  const onClick = (e: MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  return (
+    <a href={episodeUrl} onClick={onClick}>
+      {eipsodeNumber}
+    </a>
   );
 }
