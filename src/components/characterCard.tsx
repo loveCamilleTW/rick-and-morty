@@ -14,7 +14,7 @@ export function CharacterCardList(props: CharacterCardListProps) {
     <div className="characters">
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        characterPages.pages.map((page) => (
+        characterPages.pages.map((page: any) => (
           <Fragment key={page.data.info.next}>
             {page.data.results.map((character: Character) => (
               <CharacterCard key={character.id} character={character} />
