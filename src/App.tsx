@@ -1,7 +1,7 @@
-import { useEffect, useRef, Fragment } from "react";
+import { useEffect, useRef } from "react";
 import { useCharacters } from "./hooks/fetchHooks";
-import { CharacterCard } from "./components";
-import type { Character } from "./types";
+import { CharacterCardList } from "./components";
+import "./App.css";
 
 function App() {
   const { fetchNextPage, data: characterPages } = useCharacters();
@@ -29,16 +29,7 @@ function App() {
 
   return (
     <div>
-      {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        characterPages.pages.map((page) => (
-          <Fragment key={page.data.info.next}>
-            {page.data.results.map((character: Character) => (
-              <CharacterCard key={character.id} character={character} />
-            ))}
-          </Fragment>
-        ))
-      }
+      <CharacterCardList characterPages={characterPages} />
       <div className="sentinal" ref={sentinalRef}>
         Hi
       </div>

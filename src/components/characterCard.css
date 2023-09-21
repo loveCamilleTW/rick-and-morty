@@ -1,9 +1,44 @@
-.character-card {
+.characters {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.character-card {
+  width: 600px;
+  height: 220px;
+  background-color: transparent;
+  perspective: 1000px;
+  position: relative;
+}
+
+.character-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.character-card-flip {
+  transform: rotateY(180deg);
+}
+
+.character-card-front,
+.character-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
 
 .character-card-front {
   display: flex;
+}
+
+.character-card-back {
+  background-color: #bbb;
+  transform: rotateY(180deg);
 }
 
 .character-info {
