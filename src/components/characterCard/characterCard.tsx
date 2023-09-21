@@ -1,5 +1,5 @@
 import { Fragment, useState, MouseEvent } from "react";
-import { Character } from "../types";
+import { Character } from "../../types";
 import "./characterCard.css";
 
 interface CharacterCardListProps {
@@ -50,11 +50,21 @@ export function CharacterCard(props: CharacterCardProps) {
             <img src={character.image} />
           </div>
           <div className="character-info">
-            <h3 className="character-name">{character.name}</h3>
-            <div>species: {character.species}</div>
-            <div>{character.status}</div>
-            <div>type: {character.type}</div>
-            <div>{character.gender}</div>
+            <h2 className="character-name">{character.name}</h2>
+            <ul>
+              <li>
+                <strong>Species:</strong> {character.species}
+              </li>
+              <li>
+                <strong>Status:</strong> {character.status}
+              </li>
+              <li>
+                <strong>Type:</strong> {character.type}
+              </li>
+              <li>
+                <strong>Gender:</strong> {character.gender}
+              </li>
+            </ul>
           </div>
         </div>
         <div className="character-card-back">

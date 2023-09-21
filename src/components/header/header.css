@@ -1,0 +1,26 @@
+#header-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+#header-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#github-logo {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+#search-wrapper {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+#search {
+  max-width: 500px;
+}

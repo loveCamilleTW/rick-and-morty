@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useCharacters } from "./hooks/fetchHooks";
-import { CharacterCardList } from "./components";
+import { Header, CharacterCardList } from "./components";
 import "./App.css";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <main id="main-section">
-      <header>header</header>
+      <Header />
       <article id="character-list">
         <CharacterCardList characterPages={characterPages} />
       </article>

@@ -1,1 +1,2 @@
-export * from "./characterCard";
+export * from "./header/header";
+export * from "./characterCard/characterCard";
