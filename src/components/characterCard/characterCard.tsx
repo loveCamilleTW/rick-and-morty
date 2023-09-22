@@ -1,5 +1,6 @@
 import { Fragment, useState, MouseEvent } from "react";
 import type { InfiniteData } from "react-query";
+import { useEpisode, useLocation } from "../../hooks";
 import { CharacterRes, Character } from "../../types";
 import "./characterCard.css";
 
@@ -64,35 +65,69 @@ export function CharacterCard(props: CharacterCardProps) {
             </ul>
           </div>
         </div>
-        <div className="character-card-back">
-          <h3>Episodes</h3>
-          <div>
-            {character.episode.map((episodeUrl) => (
-              <EpisodeLink key={episodeUrl} episodeUrl={episodeUrl} />
-            ))}
-          </div>
-        </div>
+        <CharacterCardBack character={character} isFlipped={isFlipped} />
       </div>
     </article>
   );
 }
 
+interface CharacterCardBackProps {
+  character: Character;
+  isFlipped: boolean;
+}
+
+function CharacterCardBack(props: CharacterCardBackProps) {
+  const { character, isFlipped } = props;
+
+  const { data: lastLocation } = useLocation(character.location.url, isFlipped);
+  const { data: originLocation } = useLocation(character.origin.url, isFlipped);
+
+  console.log("character = ", character);
+
+  return (
+    <div className="character-card-back">
+      <div id="location-info-container">
+        <h3 className="location-title">Last known location</h3>
+        <div>{character.location.name}</div>
+        <div>{lastLocation ? lastLocation.dimension : null}</div>
+        <h3 className="location-title">First seen in</h3>
+        <div>{character.origin.name}</div>
+        <div>{originLocation ? originLocation.dimension : null}</div>
+      </div>
+      <div id="episode-info-container">
+        <h3>Episodes</h3>
+        <div id="episode-list">
+          {character.episode.map((episodeUrl) => (
+            <EpisodeLink
+              key={episodeUrl}
+              episodeUrl={episodeUrl}
+              enabled={isFlipped}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface EpisodeLinkProps {
   episodeUrl: string;
+  enabled: boolean;
 }
 
 function EpisodeLink(props: EpisodeLinkProps) {
-  const { episodeUrl } = props;
-  const afterSplit = episodeUrl.split("/");
-  const eipsodeNumber = afterSplit[afterSplit.length - 1];
+  const { episodeUrl, enabled } = props;
+  const { data: episode } = useEpisode(episodeUrl, enabled);
 
   const onClick = (e: MouseEvent) => {
     e.stopPropagation();
   };
 
+  if (!episode) return null;
+
   return (
     <a href={episodeUrl} onClick={onClick}>
-      {eipsodeNumber}
+      {`${episode.episode} ${episode.name}`}
     </a>
   );
 }

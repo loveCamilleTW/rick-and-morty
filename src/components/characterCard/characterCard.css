@@ -45,6 +45,10 @@
 .character-card-back {
   background-color: #bbb;
   transform: rotateY(180deg);
+
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .character-card-image-container {
@@ -61,4 +65,10 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 1px;
+}
+
+#episode-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }

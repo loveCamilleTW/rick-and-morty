@@ -1,6 +1,13 @@
 import axios from "axios";
-import { useInfiniteQuery } from "react-query";
-import { characterResSchema, CharacterRes } from "../types";
+import { useInfiniteQuery, useQuery } from "react-query";
+import {
+  characterResSchema,
+  CharacterRes,
+  episodeSchema,
+  Episode,
+  locationSchema,
+  Location,
+} from "../types";
 
 const BASE_URL = "https://rickandmortyapi.com/api";
 
@@ -26,5 +33,31 @@ export function useCharacters(name: string) {
       return nextPage;
     },
     useErrorBoundary: false,
+  });
+}
+
+export function useEpisode(url: string, enabled: boolean) {
+  const queryFn = () =>
+    axios({ url }).then((res) => {
+      episodeSchema.parse(res.data);
+      return res.data as Episode;
+    });
+
+  return useQuery(["epidsode", url], queryFn, {
+    enabled,
+    cacheTime: 1000 * 60 * 5, // 5 min
+  });
+}
+
+export function useLocation(url: string, enabled: boolean) {
+  const queryFn = () =>
+    axios({ url }).then((res) => {
+      locationSchema.parse(res.data);
+      return res.data as Location;
+    });
+
+  return useQuery(["epidsode", url], queryFn, {
+    enabled,
+    cacheTime: 1000 * 60 * 5, // 5 min
   });
 }
