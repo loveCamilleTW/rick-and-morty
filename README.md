@@ -33,3 +33,11 @@ git clone https://github.com/loveCamilleTW/rick-and-morty.git
 cd rick-and-morty
 npm install && npm run dev
 ```
+
+## Credit
+
+We would like to give credit to the following sources for providing SVG assets:
+
+- [Ricky and Morty Silhouette SVG Cut Files](https://bundlesvg.com/product/ricky-and-morty-silhouette-svg-cut-files/): this website's favicon
+
+If you plan to use the SVGs from this project, please make sure to check their individual licenses and attribution requirements.
