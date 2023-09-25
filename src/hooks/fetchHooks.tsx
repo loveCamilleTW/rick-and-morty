@@ -44,7 +44,7 @@ export function useEpisode(url: string, enabled: boolean) {
     });
 
   return useQuery(["epidsode", url], queryFn, {
-    enabled,
+    enabled: !!url && enabled,
     cacheTime: 1000 * 60 * 5, // 5 min
   });
 }
@@ -57,7 +57,7 @@ export function useLocation(url: string, enabled: boolean) {
     });
 
   return useQuery(["epidsode", url], queryFn, {
-    enabled,
+    enabled: !!url && enabled,
     cacheTime: 1000 * 60 * 5, // 5 min
   });
 }
