@@ -1,4 +1,4 @@
-import { Fragment, useState, MouseEvent } from "react";
+import { Fragment, useState } from "react";
 import type { InfiniteData } from "react-query";
 import { useEpisode, useLocation } from "../../hooks";
 import { CharacterRes, Character } from "../../types";
