@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 50px;
+  gap: 2rem;
 }
 
 .character-card {
-  width: 600px;
-  height: 220px;
+  width: 30rem;
+  height: 11rem;
   background-color: transparent;
   perspective: 1500px;
   position: relative;
@@ -43,12 +43,13 @@
 }
 
 .character-card-back {
-  background-color: #bbb;
+  background-color: #3c3e44;
   transform: rotateY(180deg);
 
   display: flex;
   justify-content: space-around;
-  gap: 10px;
+  padding: 1rem;
+  gap: 0.5rem;
 }
 
 .character-card-image-container {
@@ -59,7 +60,7 @@
 
 .character-info {
   flex: 3 1 0;
-  margin: 10px;
+  margin: 20px;
 
   display: flex;
   flex-direction: column;
@@ -67,8 +68,56 @@
   gap: 1px;
 }
 
+@media (max-width: 30rem) {
+  .character-card {
+    width: 11rem;
+    height: 30rem;
+  }
+
+  .character-card-front {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .character-card-back {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#episode-info-container {
+  overflow: hidden;
+}
+
 #episode-list {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: auto;
   flex-wrap: nowrap;
+}
+
+.location-title {
+  font-size: 1rem;
+}
+
+.location-info {
+  font-size: 0.8rem;
+}
+
+.episode-title {
+  font-size: 1rem;
+}
+
+.episode {
+  font-size: 0.8rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(245, 245, 245);
+  border-radius: 10px;
 }

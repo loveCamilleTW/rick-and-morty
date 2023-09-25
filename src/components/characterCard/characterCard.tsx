@@ -43,31 +43,43 @@ export function CharacterCard(props: CharacterCardProps) {
           isFlipped ? "character-card-flip" : ""
         }`}
       >
-        <div className="character-card-front">
-          <div className="character-card-image-container">
-            <img src={character.image} alt={character.name} />
-          </div>
-          <div className="character-info">
-            <h2 className="character-name">{character.name}</h2>
-            <ul>
-              <li>
-                <strong>Species:</strong> {character.species}
-              </li>
-              <li>
-                <strong>Status:</strong> {character.status}
-              </li>
-              <li>
-                <strong>Type:</strong> {character.type}
-              </li>
-              <li>
-                <strong>Gender:</strong> {character.gender}
-              </li>
-            </ul>
-          </div>
-        </div>
+        <CharacterCardFront character={character} />
         <CharacterCardBack character={character} isFlipped={isFlipped} />
       </div>
     </article>
+  );
+}
+
+interface CharacterCardFrontProps {
+  character: Character;
+}
+
+function CharacterCardFront(props: CharacterCardFrontProps) {
+  const { character } = props;
+
+  return (
+    <div className="character-card-front">
+      <div className="character-card-image-container">
+        <img src={character.image} alt={character.name} />
+      </div>
+      <div className="character-info">
+        <h2 className="character-name">{character.name}</h2>
+        <ul>
+          <li>
+            <strong>Species:</strong> {character.species}
+          </li>
+          <li>
+            <strong>Status:</strong> {character.status}
+          </li>
+          <li>
+            <strong>Type:</strong> {character.type}
+          </li>
+          <li>
+            <strong>Gender:</strong> {character.gender}
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 
@@ -82,20 +94,24 @@ function CharacterCardBack(props: CharacterCardBackProps) {
   const { data: lastLocation } = useLocation(character.location.url, isFlipped);
   const { data: originLocation } = useLocation(character.origin.url, isFlipped);
 
-  console.log("character = ", character);
-
   return (
     <div className="character-card-back">
       <div id="location-info-container">
         <h3 className="location-title">Last known location</h3>
-        <div>{character.location.name}</div>
-        <div>{lastLocation ? lastLocation.dimension : null}</div>
+        <div className="location-info">
+          {lastLocation ? lastLocation.name : null}
+        </div>
+        <div className="location-info">
+          {lastLocation ? lastLocation.type : null}
+        </div>
         <h3 className="location-title">First seen in</h3>
-        <div>{character.origin.name}</div>
-        <div>{originLocation ? originLocation.dimension : null}</div>
+        <div className="location-info">{character.origin.name}</div>
+        <div className="location-info">
+          {originLocation ? originLocation.dimension : null}
+        </div>
       </div>
       <div id="episode-info-container">
-        <h3>Episodes</h3>
+        <h3 className="episode-title">Episodes</h3>
         <div id="episode-list">
           {character.episode.map((episodeUrl) => (
             <EpisodeLink
@@ -119,15 +135,7 @@ function EpisodeLink(props: EpisodeLinkProps) {
   const { episodeUrl, enabled } = props;
   const { data: episode } = useEpisode(episodeUrl, enabled);
 
-  const onClick = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
-
   if (!episode) return null;
 
-  return (
-    <a href={episodeUrl} onClick={onClick}>
-      {`${episode.episode} ${episode.name}`}
-    </a>
-  );
+  return <div className="episode">{`${episode.episode} ${episode.name}`}</div>;
 }
